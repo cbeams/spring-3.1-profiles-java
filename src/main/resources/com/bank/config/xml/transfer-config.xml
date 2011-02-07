@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="transferService" class="com.bank.service.internal.DefaultTransferService">
+		<constructor-arg ref="accountRepository"/>
+		<constructor-arg ref="feePolicy"/>
+	</bean>
+
+	<bean id="accountRepository" class="com.bank.repository.internal.JdbcAccountRepository">
+		<constructor-arg ref="dataSource"/>
+	</bean>
+
+	<bean id="feePolicy" class="com.bank.service.internal.ZeroFeePolicy"/>
+
+	<beans profile="dev">
+		<jdbc:embedded-database id="dataSource">
+			<jdbc:script location="classpath:com/bank/config/sql/schema.sql"/>
+			<jdbc:script location="classpath:com/bank/config/sql/test-data.sql"/>
+		</jdbc:embedded-database>
+	</beans>
+
+	<beans profile="production">
+		<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/datasource"/>
+	</beans>
+</beans>
