@@ -12,7 +12,7 @@ import com.bank.service.internal.DefaultTransferService;
 import com.bank.service.internal.ZeroFeePolicy;
 
 @Configuration
-public class TransferConfig {
+public class TransferServiceConfig {
 
 	@Autowired DataConfig dataConfig;
 

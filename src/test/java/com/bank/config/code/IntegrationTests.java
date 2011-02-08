@@ -23,28 +23,30 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.bank.domain.InsufficientFundsException;
-import com.bank.domain.TransferReceipt;
 import com.bank.repository.AccountRepository;
 import com.bank.service.TransferService;
 
 public class IntegrationTests {
 
 	@Test
-	public void transfer() throws InsufficientFundsException {
+	public void transferTenDollars() throws InsufficientFundsException {
 
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		ctx.getEnvironment().setDefaultProfiles("dev");
-		ctx.register(TransferConfig.class, JndiDataConfig.class, StandaloneDataConfig.class);
+		//ctx.register(TransferConfig.class, JndiDataConfig.class, StandaloneDataConfig.class);
+		ctx.scan("com.bank.config.code");
 		ctx.refresh();
 
 		TransferService transferService = ctx.getBean(TransferService.class);
-		TransferReceipt receipt = transferService.transfer(10.00, "A123", "C456");
-
-		assertThat(receipt.getFinalDestinationAccount().getBalance(), equalTo(10.00));
-
 		AccountRepository accountRepository = ctx.getBean(AccountRepository.class);
-		assertThat(accountRepository.findById("A123").getBalance(), equalTo(90.00));
 
+		assertThat(accountRepository.findById("A123").getBalance(), equalTo(100.00));
+		assertThat(accountRepository.findById("C456").getBalance(), equalTo(0.00));
+
+		transferService.transfer(10.00, "A123", "C456");
+
+		assertThat(accountRepository.findById("A123").getBalance(), equalTo(90.00));
+		assertThat(accountRepository.findById("C456").getBalance(), equalTo(10.00));
 	}
 
 }

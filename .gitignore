@@ -11,3 +11,5 @@
 *.ipr
 *.iws
 .settings
+bin
+*.sw*

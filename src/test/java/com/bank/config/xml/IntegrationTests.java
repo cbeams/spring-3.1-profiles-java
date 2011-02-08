@@ -20,11 +20,9 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
-
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 import com.bank.domain.InsufficientFundsException;
-import com.bank.domain.TransferReceipt;
 import com.bank.repository.AccountRepository;
 import com.bank.service.TransferService;
 
@@ -34,17 +32,19 @@ public class IntegrationTests {
 	public void transfer() throws InsufficientFundsException {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
 		ctx.getEnvironment().setDefaultProfiles("dev");
-		ctx.load("classpath:/com/bank/config/transfer-config.xml");
+		ctx.load("classpath:/com/bank/config/xml/transfer-service-config.xml");
 		ctx.refresh();
 
 		TransferService transferService = ctx.getBean(TransferService.class);
-		TransferReceipt receipt = transferService.transfer(10.00, "A123", "C456");
-
-		assertThat(receipt.getFinalDestinationAccount().getBalance(), equalTo(10.00));
-
 		AccountRepository accountRepository = ctx.getBean(AccountRepository.class);
-		assertThat(accountRepository.findById("A123").getBalance(), equalTo(90.00));
 
+		assertThat(accountRepository.findById("A123").getBalance(), equalTo(100.00));
+		assertThat(accountRepository.findById("C456").getBalance(), equalTo(0.00));
+
+		transferService.transfer(10.00, "A123", "C456");
+
+		assertThat(accountRepository.findById("A123").getBalance(), equalTo(90.00));
+		assertThat(accountRepository.findById("C456").getBalance(), equalTo(10.00));
 	}
 
 }

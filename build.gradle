@@ -32,8 +32,8 @@ task wrapper(type: Wrapper) {
     group = 'Admin'
     description = "Generates gradlew and gradlew.bat bootstrap scripts"
     gradleVersion = '0.9.2'
-    urlRoot='http://gradle.artifactoryonline.com/gradle/distributions'
+    //urlRoot='http://gradle.artifactoryonline.com/gradle/distributions'
     // place jar file and properties into a
     // subdirectory to avoid root dir clutter
-    jarPath = 'src/build'
+    jarFile = 'src/build/gradle-wrapper.jar'
 }

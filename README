@@ -1,83 +1,29 @@
-----------------------------------------------------------
-Spring DI Styles webinar companion project
-----------------------------------------------------------
 
+For those familiar with Git:
 
-Introduction
-------------
+    git clone git@github.com:cbeams/spring-3.1-profiles-xml.git
 
-This project uses Git for source control (http://git-scm.com), and is hosted
-at GitHub (http://github.com/cbeams/distyles).
+Or if you prefer using Subversion:
 
-To clone (check out) the project:
+    svn co http://svn.github.com/cbeams/spring-3.1-profiles-xml.git spring-3.1-profiles-xml.git
 
-    git clone git://github.com/cbeams/distyles.git
+Once checked out, you can build from the command line using either Gradle or
+Maven.  If you're new to Gradle, don't worry -- there's nothing for you to
+install.  Simply type the following within the root directory of the project:
 
-If you don't have git installed, and would like a zip or tar of the sources:
+    >$ ./gradlew build
 
-    http://github.com/cbeams/distyles/archives/master
+If necessary, this 'Gradle wrapper' script will download a distribution of
+Gradle for you.  If you prefer Maven, of course you can simply type:
 
+    >$ mvn test
 
-This project is built using Gradle (http://gradle.org).
+If you're using an IDE that supports Maven-based projects, you can of course
+import the project directly from its POM.  In any case, if you're using Eclipse
+you can generate Eclipse project metadata with
 
-To execute build system tasks, simply run the 'gradle wrapper' script
-appropriate to your platform.  You'll notice these scripts are available in the
-root of this project, meaning there is nothing for you to download or install.
+    >$ ./gradlew eclipse
 
-    For Windows:  `gradlew.bat`
-    For OSX/*nix: `gradlew`
+IDEA users can do the same with
 
-The remainder of this document will simply refer these scripts as 'gradlew'.
-
-
-Discover available tasks:
--------------------------
-
-    gradlew --tasks
-        or
-    gradlew -t
-
-
-Build the project:
-------------------
-
-    gradlew build
-
-Note that 'build' includes compilation, testing, and packaging. For Maven users,
-`gradlew build` is roughly equivalent to `mvn package`.
-
-Of course, the first time you execute this task, Gradle will download all
-project dependencies.
-
-
-Import the project into Eclipse/STS:
-------------------------------------
-
-    gradlew eclipse
-
-to update .classpath file with paths to the dependency jars you just downloaded
-(note that .project and .springBeans files already exist).  This command will
-also retrive and link dependency source jars. After this is complete, you can
-import the project as follows:
-
-    File->Import->Existing Projects Into Workspace
-
-If using STS (http://www.springsource.com/developer/sts), you'll be glad to know
-that the Spring Project Nature has already been applied for you in the .project
-file, so you should have complete tooling for the Spring XML files in the
-project without any extra steps.
-
-
-Import the project into IntellJ IDEA:
--------------------------------------
-
-    gradlew idea
-
-to create .iml, .ipr, and .iws files
-
-
-Run the TransferScript main():
-------------------------------
-
-    gradlew runTransferScript
-
+    >$ ./gradlew idea
