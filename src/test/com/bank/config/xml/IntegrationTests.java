@@ -29,9 +29,9 @@ import com.bank.service.TransferService;
 public class IntegrationTests {
 
 	@Test
-	public void transfer() throws InsufficientFundsException {
+	public void transferTenDollars() throws InsufficientFundsException {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-		ctx.getEnvironment().setDefaultProfiles("dev");
+		ctx.getEnvironment().setActiveProfiles("dev");
 		ctx.load("classpath:/com/bank/config/xml/transfer-service-config.xml");
 		ctx.refresh();
 
