@@ -9,21 +9,32 @@ Or if you prefer using Subversion:
 
 Once checked out, you can build from the command line using either Gradle or
 Maven.  If you're new to Gradle, don't worry -- there's nothing for you to
-install.  Simply type the following within the root directory of the project:
+install.  Simply use the 'gradlew' (or 'gradlew.bat' on windows) script within
+the root directory of the project:
 
     >$ ./gradlew build
 
+And the following will give you a list of all available tasks:
+
+    >$ ./gradlew tasks
+
 If necessary, this 'Gradle wrapper' script will download a distribution of
-Gradle for you.  If you prefer Maven, of course you can simply type:
+Gradle for you.
+
+Generate project metadata appropriate to your IDE with
+
+    >$ ./gradlew eclipse
+        - or -
+    >$ ./gradlew idea
+
+
+If you prefer Maven, you can simply type:
 
     >$ mvn test
 
-If you're using an IDE that supports Maven-based projects, you can of course
-import the project directly from its POM.  In any case, if you're using Eclipse
-you can generate Eclipse project metadata with
+If you're using an IDE that supports Maven-based projects, you can import the
+project directly from its POM.  Otherwise, generate IDE metadata with
 
-    >$ ./gradlew eclipse
-
-IDEA users can do the same with
-
-    >$ ./gradlew idea
+    >$ mvn eclipse:eclipse
+        - or -
+    >$ mvn idea:idea
