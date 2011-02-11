@@ -27,6 +27,18 @@ dependencies {
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
+// consolidate source directories for ease of browsing
+sourceSets {
+    main {
+        java { srcDir 'src/main' }
+        resources { srcDir 'src/main' }
+    }
+    test {
+        java { srcDir 'src/test' }
+        resources { srcDir 'src/test' }
+    }
+}
+
 task wrapper(type: Wrapper) {
     group = 'Admin'
     description = "Generates gradlew and gradlew.bat bootstrap scripts"
