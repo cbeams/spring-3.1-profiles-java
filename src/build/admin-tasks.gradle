@@ -15,7 +15,6 @@ task generatePom {
     build.dependsOn generatePom
 
     doLast() {
-        // customize the pom creation process
         pom {
             project {
                 name = project.description
