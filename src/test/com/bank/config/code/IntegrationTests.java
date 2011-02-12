@@ -33,8 +33,7 @@ public class IntegrationTests {
 
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		ctx.getEnvironment().setDefaultProfiles("dev");
-		//ctx.register(TransferConfig.class, JndiDataConfig.class, StandaloneDataConfig.class);
-		ctx.scan("com.bank.config.code");
+		ctx.register(TransferServiceConfig.class, StandaloneDataConfig.class, JndiDataConfig.class);
 		ctx.refresh();
 
 		TransferService transferService = ctx.getBean(TransferService.class);
