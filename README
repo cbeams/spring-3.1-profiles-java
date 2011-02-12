@@ -1,11 +1,11 @@
 
 For those familiar with Git:
 
-    git clone git@github.com:cbeams/spring-3.1-profiles-xml.git
+    git clone git@github.com:cbeams/spring-3.1-profiles-java.git
 
 Or if you prefer using Subversion:
 
-    svn co http://svn.github.com/cbeams/spring-3.1-profiles-xml.git spring-3.1-profiles-xml.git
+    svn co http://svn.github.com/cbeams/spring-3.1-profiles-java.git spring-3.1-profiles-java.git
 
 Once checked out, you can build from the command line using either Gradle or
 Maven.  If you're new to Gradle, don't worry -- there's nothing for you to
