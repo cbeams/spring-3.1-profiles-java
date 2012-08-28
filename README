@@ -1,7 +1,6 @@
-
 For those familiar with Git:
 
-    git clone git@github.com:cbeams/spring-3.1-profiles-java.git
+    git clone git://github.com/cbeams/spring-3.1-profiles-java.git
 
 Or if you prefer using Subversion:
 
